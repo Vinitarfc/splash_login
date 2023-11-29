@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.deepPurple,
+        primaryColor: Colors.green,
         useMaterial3: true,
       ),
       initialRoute: '/splash',
