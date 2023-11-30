@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:splash_login/components/custom_login_button_component.dart';
 import 'package:splash_login/controllers/login_controller.dart';
+import 'package:splash_login/widgets/custom_text_field_widget.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -20,48 +22,17 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.people, size: 100),
-            TextField(
-              decoration: InputDecoration(
-                label: Text('Login'),
-              ),
+            CustomTextFieldWidget(
+              label: 'Login',
               onChanged: _controller.setLogin,
             ),
-            TextField(
-              decoration: InputDecoration(
-                label: Text('Senha'),
-              ),
-              obscureText: true,
+            CustomTextFieldWidget(
+              label: 'Senha',
               onChanged: _controller.setSenha,
+              obscureText: true,
             ),
-            SizedBox(
-              height: 15,
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: _controller.inLoader,
-              builder: (_, inLoader, __) => inLoader
-                  ? CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: () {
-                        _controller.auth().then((result) {
-                          if (result) {
-                            Navigator.of(context).pushReplacementNamed('/home');
-                            print('Sucesso');
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: const Text('Falha ao realizar o login'),
-                              duration: const Duration(seconds: 2),
-                              action: SnackBarAction(
-                                label: 'Tentar novamente',
-                                onPressed: () {},
-                              ),
-                            ));
-                            print('Falhou');
-                          }
-                        });
-                      },
-                      child: Text('Logar'),
-                    ),
-            ),
+            SizedBox(height: 20),
+            CustomLoginButtonComponent(loginController: _controller),
           ],
         ),
       ),
