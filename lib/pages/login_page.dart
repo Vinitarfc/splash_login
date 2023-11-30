@@ -33,11 +33,25 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
               onChanged: _controller.setSenha,
             ),
-            ElevatedButton(
-              onPressed: () {
-                _controller.auth();
-              },
-              child: Text('Logar'),
+            SizedBox(
+              height: 15,
+            ),
+            ValueListenableBuilder<bool>(
+              valueListenable: _controller.inLoader,
+              builder: (_, inLoader, __) => inLoader
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        _controller.auth().then((result) {
+                          if (result) {
+                            print('Sucesso');
+                          } else {
+                            print('Falhou');
+                          }
+                        });
+                      },
+                      child: Text('Logar'),
+                    ),
             ),
           ],
         ),

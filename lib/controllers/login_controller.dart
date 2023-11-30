@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
+
 class LoginController {
+  ValueNotifier<bool> inLoader = ValueNotifier<bool>(false);
+
   String? _login;
   setLogin(String value) => _login = value;
 
@@ -6,7 +10,9 @@ class LoginController {
   setSenha(String value) => _senha = value;
 
   Future<bool> auth() async {
-    print('login: $_login, senha: $_senha');
-    return false;
+    inLoader.value = true;
+    await Future.delayed(Duration(seconds: 2));
+    inLoader.value = false;
+    return _login == 'admin' && _senha == '123';
   }
 }
