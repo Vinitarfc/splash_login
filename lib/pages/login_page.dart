@@ -44,8 +44,17 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         _controller.auth().then((result) {
                           if (result) {
+                            Navigator.of(context).pushReplacementNamed('/home');
                             print('Sucesso');
                           } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: const Text('Falha ao realizar o login'),
+                              duration: const Duration(seconds: 2),
+                              action: SnackBarAction(
+                                label: 'Tentar novamente',
+                                onPressed: () {},
+                              ),
+                            ));
                             print('Falhou');
                           }
                         });
