@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:splash_login/controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController _controller = LoginController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +24,19 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                 label: Text('Login'),
               ),
+              onChanged: _controller.setLogin,
             ),
             TextField(
               decoration: InputDecoration(
                 label: Text('Senha'),
               ),
               obscureText: true,
+              onChanged: _controller.setSenha,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _controller.auth();
+              },
               child: Text('Logar'),
             ),
           ],
