@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_login/pages/details_page.dart';
 import 'package:splash_login/pages/home_page.dart';
 import 'package:splash_login/pages/login_page.dart';
 import 'package:splash_login/pages/splash_page.dart';
@@ -16,15 +17,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'login Flutter',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade300),
-        primaryColor: Colors.green,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade500),
+        primaryColor: Colors.green.shade500,
         useMaterial3: true,
       ),
       initialRoute: '/splash',
       routes: {
         '/splash': (_) => const SplashPage(),
         '/login': (_) => LoginPage(),
-        '/home': (_) => HomePage(),
+        '/home': (_) => const HomePage(),
+        '/datails': (_) => const DetailsPage(),
       },
     );
   }
