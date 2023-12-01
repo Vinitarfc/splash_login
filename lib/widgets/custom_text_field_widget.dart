@@ -4,11 +4,14 @@ class CustomTextFieldWidget extends StatelessWidget {
   final String label;
   final Function(String) onChanged;
   final bool obscureText;
+  final VoidCallback? onSubmitted;
+
   const CustomTextFieldWidget(
       {super.key,
       required this.label,
       required this.onChanged,
-      this.obscureText = false});
+      this.obscureText = false,
+      this.onSubmitted});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,11 @@ class CustomTextFieldWidget extends StatelessWidget {
       ),
       onChanged: onChanged,
       obscureText: obscureText,
+      onSubmitted: (_) {
+        if (onSubmitted != null) {
+          onSubmitted!();
+        }
+      },
     );
   }
 }

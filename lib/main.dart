@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'login Flutter',
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade300),
         primaryColor: Colors.green,
         useMaterial3: true,
       ),

@@ -12,7 +12,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     //esse Future poderia ser a chamada da API ou carregamento de algo
-    Future.delayed(Duration(seconds: 3))
+    Future.delayed(Duration(seconds: 2))
         .then((_) => Navigator.of(context).pushReplacementNamed('/login'));
   }
 
