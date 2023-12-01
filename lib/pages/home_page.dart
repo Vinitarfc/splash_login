@@ -37,6 +37,10 @@ class _HomePageState extends State<HomePage> {
               leading: Text(list[idx].id.toString()),
               trailing: Icon(Icons.arrow_forward),
               title: Text(list[idx].title),
+              onTap: () => Navigator.of(context).pushNamed(
+                '/datails',
+                arguments: list[idx],
+              ),
             ),
           );
         },
