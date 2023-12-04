@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_login/services/prefs_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -11,9 +12,13 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    //esse Future poderia ser a chamada da API ou carregamento de algo
-    Future.delayed(Duration(seconds: 2))
-        .then((_) => Navigator.of(context).pushReplacementNamed('/login'));
+
+    Future.wait([
+      PrefsService.isAuth(),
+      Future.delayed(Duration(seconds: 2)),
+    ]).then((value) => value[0]
+        ? Navigator.of(context).pushReplacementNamed('/home')
+        : Navigator.of(context).pushReplacementNamed('/login'));
   }
 
   @override
